@@ -8,6 +8,6 @@ const router = express.Router();
 router.get("/allLessons", lessonController.getAllLessons);
 
 // Search lessons route
-router.get("/search", searchController.searchLessons);
+router.get("/search/:key", searchController.searchLessons);
 
 module.exports = router;

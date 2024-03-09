@@ -1,16 +1,13 @@
-import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 const AppNavBar = () => {
 
-
   return (
-    <Navbar bg="warning" expand="lg" className="navbar mb-4">
-      <Container className="navbarContainer">
-        <Navbar.Brand as={NavLink} to="/" className="navBrand">日本語 勉強</Navbar.Brand>
+    <Row>
+      <Col>
+      <Navbar bg="warning" expand="lg" className="navbar mb-2">
+        <Navbar.Brand as={NavLink} to="/" className="navBrand px-5">日本語 勉強</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -24,18 +21,11 @@ const AppNavBar = () => {
               Notes
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
-      </Container>
     </Navbar>
+      </Col>
+    </Row>
+    
   );
 };
 

@@ -11,13 +11,17 @@ module.exports.getAllLessons = (request, response) => {
 }
 
 // --- Search a lesson --- //
-module.exports.searchLessons = (request, response) => {
-    const searchTerm = request.body.search;
-
-    Lesson.find({ phrases: { $regex: searchTerm, $options: 'i' } })
-        .then(result => {
-            response.send(result);
-        }).catch(err => {
-            response.send(err);
+// Define the searchLessons function
+module.exports.searchLessons = async (request, response) => {
+    try {
+        const result = await Lesson.find({
+            "$or": [
+                {phrases: { $regex: request.params.key }},
+                {meaning: { $regex: request.params.key }}
+            ]
         });
-}
+        response.status(200).json(result);
+    } catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+};
