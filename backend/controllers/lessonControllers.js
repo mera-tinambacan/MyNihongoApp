@@ -10,3 +10,14 @@ module.exports.getAllLessons = (request, response) => {
         });
 }
 
+// --- Search a lesson --- //
+module.exports.searchLessons = (request, response) => {
+    const searchTerm = request.body.search;
+
+    Lesson.find({ phrases: { $regex: searchTerm, $options: 'i' } })
+        .then(result => {
+            response.send(result);
+        }).catch(err => {
+            response.send(err);
+        });
+}
