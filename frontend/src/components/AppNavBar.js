@@ -6,9 +6,9 @@ import Button from 'react-bootstrap/Button';
 
 const AppNavBar = () => {
   return (
-    <Navbar bg="light" expand="lg" className="navbar">
+    <Navbar bg="warning" expand="lg" className="navbar mb-4">
       <Container className="navbarContainer">
-        <Navbar.Brand as={NavLink} to="/">日本語 勉強</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/" className="navBrand">日本語 勉強</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
