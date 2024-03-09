@@ -25,3 +25,8 @@
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: lightcoral; /* Set your desired striped color here */
 }
+
+.lesson-table th,
+.lesson-table td {
+    font-size: 0.8rem; /* Adjust the font size as needed */
+}

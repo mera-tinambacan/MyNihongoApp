@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Table, Form } from 'react-bootstrap'
+import { Row, Col, Table, Form } from 'react-bootstrap';
 
 const LessonList = () => {
     const [lessons, setLessons] = useState([]);
@@ -42,7 +42,7 @@ const LessonList = () => {
                         onChange={searchHandle}
                     />
                 </Form>
-                <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="sm" className="lesson-table">
                     <thead className="table-secondary">
                         <tr>
                             <th>Level</th>
@@ -55,8 +55,8 @@ const LessonList = () => {
                     </thead>
                     <tbody>
                         {
-                            lessons.map((item) =>
-                                <tr key={item} >
+                            lessons.map((item, index) =>
+                                <tr key={index} >
                                     <td>{item.level}</td>
                                     <td>{item.vform}</td>
                                     <td>{item.phrases}</td>
@@ -72,5 +72,4 @@ const LessonList = () => {
         </Row>
     );
 }
-
 export default LessonList;

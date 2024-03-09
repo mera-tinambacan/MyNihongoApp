@@ -1,13 +1,13 @@
-import { Navbar, Nav, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 const AppNavBar = () => {
-
   return (
-    <Row>
-      <Col>
-      <Navbar bg="warning" expand="lg" className="navbar mb-2">
-        <Navbar.Brand as={NavLink} to="/" className="navBrand px-5">日本語 勉強</Navbar.Brand>
+    <Navbar bg="warning" expand="lg" className="navbar mb-2">
+      <Container className='mx-5'>
+        <Navbar.Brand as={NavLink} to="/" className="navBrand">
+          日本語 勉強
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -22,10 +22,8 @@ const AppNavBar = () => {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+      </Container>
     </Navbar>
-      </Col>
-    </Row>
-    
   );
 };
 
