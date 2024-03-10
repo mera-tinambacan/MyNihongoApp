@@ -11,13 +11,14 @@ module.exports.getAllLessons = (request, response) => {
 }
 
 // --- Search a lesson --- //
-// Define the searchLessons function
 module.exports.searchLessons = async (request, response) => {
     try {
         const result = await Lesson.find({
             "$or": [
-                {phrases: { $regex: request.params.key }},
-                {meaning: { $regex: request.params.key }}
+                { vform: { $regex: request.params.key, $options: "i" } },
+                { phrases: { $regex: request.params.key, $options: "i" } },
+                { meaning: { $regex: request.params.key, $options: "i" } },
+                { translation: { $regex: request.params.key, $options: "i" } }
             ]
         });
         response.status(200).json(result);

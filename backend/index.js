@@ -5,6 +5,7 @@ const cors = require('cors');
 
 // ------ Require different routes ------ //
 const lessonRoutes = require("./routes/lessonRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 
 // ------ Create app using express() ------ //
 const app = express();
@@ -28,6 +29,7 @@ app.use(express.urlencoded({extended:true}));
 
 //------ Allow access to different routes ------ //
 app.use("/lessons", lessonRoutes);
+app.use("/notes", noteRoutes);
 
 app.listen(process.env.PORT || 4000, () =>{
 	console.log(`API is now online on port ${process.env.PORT||4000}`);
