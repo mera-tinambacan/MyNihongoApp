@@ -33,7 +33,7 @@ app.use("/notes", noteRoutes);
 
 //------ Allow requests from a specific origin
 app.use(cors({
-    origin: 'https://my-nihongo-app-client-o7j3u4y99-mers-projects-c9343883.vercel.app' // Replace with your frontend domain
+    origin: 'my-nihongo-app-server.vercel.app' // Replace with your frontend domain
 }));
 
 app.listen(process.env.PORT || 4000, () =>{
