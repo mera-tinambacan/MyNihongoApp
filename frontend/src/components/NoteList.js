@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Table, Form } from 'react-bootstrap';
+import { Row, Col, Table, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const NoteList = () => {
     const [notes, setNotes] = useState([]);
@@ -32,15 +33,19 @@ const NoteList = () => {
     return (
         <Row className='mx-5'>
             <Col>
-                <Form className="d-flex mb-2 col-3">
-                    <Form.Control
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        onChange={searchHandle}
-                    />
-                </Form>
+                <div className="d-flex align-items-center">
+                    <Form className="d-flex mb-2 col-3 me-2">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                            onChange={searchHandle}
+                        />
+                    </Form>
+                    <Button as={Link} to='/CreateNote' className='btn-secondary shadow-none'>
+                        Add New Note
+                    </Button>
+                </div>
                 <Table striped bordered hover size="sm" className="lesson-table">
                     <thead className="table-secondary">
                         <tr>
