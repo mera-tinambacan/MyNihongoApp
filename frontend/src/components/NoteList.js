@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Table, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+
 const NoteList = () => {
     const [notes, setNotes] = useState([]);
 
@@ -10,7 +11,7 @@ const NoteList = () => {
     }, []);
 
     const getAllNotes = async () => {
-        let result = await fetch('https://my-nihongo-app-client.vercel.app/notes/allNotes')
+        let result = await fetch('http://localhost:4000/notes/allNotes')
         result = await result.json();
         setNotes(result);
     }
@@ -20,7 +21,7 @@ const NoteList = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`https://my-nihongo-app-client.vercel.app/notes/search/${key}`);
+            let result = await fetch(`http://localhost:4000/notes/search/${key}`);
             result = await result.json()
             if (result) {
                 setNotes(result)

@@ -9,7 +9,7 @@ const LessonList = () => {
     }, []);
 
     const getAllLessons = async () => {
-        let result = await fetch('https://my-nihongo-app-client.vercel.app/lessons/allLessons')
+        let result = await fetch('http://localhost:4000/lessons/allLessons')
         result = await result.json();
         setLessons(result);
     }
@@ -20,7 +20,7 @@ const LessonList = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`https://my-nihongo-app-client.vercel.app/lessons/search/${key}`);
+            let result = await fetch(`http://localhost:4000/lessons/search/${key}`);
             result = await result.json()
             if (result) {
                 setLessons(result)

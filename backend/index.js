@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+
 // ------ Require different routes ------ //
 const lessonRoutes = require("./routes/lessonRoutes");
 const noteRoutes = require("./routes/noteRoutes");
@@ -33,7 +34,7 @@ app.use("/notes", noteRoutes);
 
 //------ Allow requests from a specific origin
 app.use(cors({
-    origin: 'my-nihongo-app-server.vercel.app' // Replace with your frontend domain
+    origin: 'https://my-nihongo-app-client.vercel.app' // Replace with your frontend domain
 }));
 
 app.listen(process.env.PORT || 4000, () =>{
