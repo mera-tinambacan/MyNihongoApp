@@ -9,7 +9,7 @@ const LessonList = () => {
     }, []);
 
     const getAllLessons = async () => {
-        let result = await fetch('http://localhost:4000/lessons/allLessons')
+        let result = await fetch('https://my-nihongo-app-server-294p5uo8u-mers-projects-c9343883.vercel.app/lessons/allLessons')
         result = await result.json();
         setLessons(result);
     }
