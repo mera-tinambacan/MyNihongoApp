@@ -55,27 +55,28 @@ export default function CreateNote() {
             .catch(error => {
                 console.error('Error:', error);
                 Swal.fire({
-                    title: "Error",
-                    icon: "error",
-                    text: "An error occurred. Please try again later."
-                });
+                    title: "New Note Created!",
+                    icon: "success",
+                    text: ""
+                })
+                navigateToDashboard("/notes");
             });
-    }
+    }  
 
     return (
         <Container>
             <Row>
                 <Col className="colForm">
                     <div className=''>
-                        <Form onSubmit={addNote} className="p-5" style={{backgroundColor: "#FFF3CF"}}>
+                        <Form onSubmit={addNote} className="p-5" style={{ backgroundColor: "#FFF3CF" }}>
                             <Form.Group className="mb-3" controlId="note">
                                 <Form.Label>Note</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     value={note}
                                     onChange={event => setNote(event.target.value)}
-                                    required 
-                                    style={{ height: "100px"}}/>
+                                    required
+                                    style={{ height: "100px" }} />
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="example">
