@@ -1,7 +1,8 @@
-import './App.css';
 import AppNavBar from './components/AppNavBar';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import LessonList from './components/LessonList';
+import NoteList from './components/NoteList';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import './App.css';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LessonList/>}/>
         <Route path="/vocabKanji" element={<h1>vocabKanji component</h1>}/>
-        <Route path="/notes" element={<h1>Notes component</h1>}/>
+        <Route path="/notes" element={<NoteList/>}/>
       </Routes>
     </Router>
   );

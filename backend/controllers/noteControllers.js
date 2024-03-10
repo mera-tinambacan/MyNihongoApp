@@ -26,3 +26,20 @@ module.exports.searchNotes = async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 };
+
+// --- Create Products ---//
+module.exports.addNotes = (request, response) => {
+    let newNote = new Note({
+        note: request.body.note,
+        example: request.body.example,
+        translation: request.body.translation,
+        remark: request.body.remark
+    })
+    newNote.save().then(result => {
+        console.log(result);
+        response.send("New note added!");
+    }).catch(error => {
+        console.log(error);
+        response.send(false);
+    })
+}

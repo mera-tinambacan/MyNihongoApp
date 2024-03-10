@@ -1,6 +1,5 @@
 const express = require("express");
 const noteController = require("../controllers/noteControllers")
-const searchController = require("../controllers/noteControllers");
 
 const router = express.Router();
 
@@ -8,6 +7,9 @@ const router = express.Router();
 router.get("/allNotes", noteController.getAllNotes);
 
 // Search lessons route
-router.get("/search/:key", searchController.searchNotes);
+router.get("/search/:key", noteController.searchNotes);
+
+// Add note
+router.post("/addNote", noteController.addNotes);
 
 module.exports = router;

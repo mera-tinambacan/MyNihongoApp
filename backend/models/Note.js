@@ -7,15 +7,15 @@ const noteSchema = new mongoose.Schema({
     },
     example: {
         type: String,
-        required: [true, "Example is required"]
+        required: false
     },
     translation: {
         type: String,
-        required: [true, "Translation is required"]
+        required: false
     },
     remark: {
         type: String,
-        required: [true, "Translation is required"]
+        required: false
     },
 });
 module.exports = mongoose.model("Notes", noteSchema)

@@ -1,6 +1,5 @@
 const express = require("express");
 const lessonController = require("../controllers/lessonControllers")
-const searchController = require("../controllers/lessonControllers");
 
 const router = express.Router();
 
@@ -8,6 +7,6 @@ const router = express.Router();
 router.get("/allLessons", lessonController.getAllLessons);
 
 // Search lessons route
-router.get("/search/:key", searchController.searchLessons);
+router.get("/search/:key", lessonController.searchLessons);
 
 module.exports = router;
