@@ -31,6 +31,11 @@ app.use(express.urlencoded({extended:true}));
 app.use("/lessons", lessonRoutes);
 app.use("/notes", noteRoutes);
 
+//------ Allow requests from a specific origin
+app.use(cors({
+    origin: 'https://frontend-qphmdm8cw-mers-projects-c9343883.vercel.app/' // Replace with your frontend domain
+}));
+
 app.listen(process.env.PORT || 4000, () =>{
 	console.log(`API is now online on port ${process.env.PORT||4000}`);
 })
