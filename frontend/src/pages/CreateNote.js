@@ -22,7 +22,7 @@ export default function CreateNote() {
     function addNote(event) {
         event.preventDefault();
 
-        fetch('http://localhost:4000/notes/addNote', {
+        fetch('https://my-nihongo-app-server-2jp093nhj-mers-projects-c9343883.vercel.app/notes/addNote', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
