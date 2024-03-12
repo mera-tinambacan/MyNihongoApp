@@ -2,12 +2,10 @@
 
 .navbar {
   font-family: 'Roboto', sans-serif;
-  background-color: #1877F2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navLink {
-  color: #c9c1c1;
   font-weight: 300;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -18,15 +16,50 @@
   margin-right: 5px;
 }
 
-.navLink:hover {
-  background-color: #fff;
+.navbar-brand,
+.nav-link {
+  color: white !important; /* Set your desired text color here */
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: lightcoral; /* Set your desired striped color here */
+.navLink:hover {
+  background-color: #EABE6C;
 }
 
 .lesson-table th,
 .lesson-table td {
     font-size: 0.8rem; /* Adjust the font size as needed */
 }
+
+.navbar {
+  background-color: #944E63 !important;
+}
+
+.table-header {
+  background-color: #CAA6A6 !important;
+  text-align: center;
+  color: white;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+   background-color: #FEFBF6;
+ }
+
+ .lesson-table th,
+.lesson-table td {
+  border: none; /* Remove border */
+}
+
+.custom-filter-button {
+  background-color: #B2A59B !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* app.css */
+.custom-add-note-button {
+  background-color: #B2A59B !important;
+  border: none !important;
+  outline: none !important;
+}
+
