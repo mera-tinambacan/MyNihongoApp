@@ -1,87 +1,69 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Table, Form, Dropdown } from 'react-bootstrap';
+import { Row, Col, Table, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const LessonList = () => {
-    const [lessons, setLessons] = useState([]);
-    const [filter, setFilter] = useState(null);
+
+const NoteList = () => {
+    const [notes, setNotes] = useState([]);
 
     useEffect(() => {
-        getAllLessons();
+        getAllNotes();
     }, []);
 
-    const getAllLessons = async () => {
-        let result = await fetch('https://my-nihongo-app-server.vercel.app/lessons/allLessons')
+    const getAllNotes = async () => {
+        let result = await fetch('https://my-nihongo-app-server.vercel.app/notes/allNotes')
         result = await result.json();
-        setLessons(result);
+        setNotes(result);
     }
+
+    console.warn(notes)
 
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`https://my-nihongo-app-server.vercel.app/lessons/search/${key}`);
+            let result = await fetch(`https://my-nihongo-app-server.vercel.app/notes/search/${key}`);
             result = await result.json()
             if (result) {
-                setLessons(result)
+                setNotes(result)
             }
         } else {
-            getAllLessons();
+            getAllNotes();
         }
     }
-
-    const handleFilterChange = (selectedFilter) => {
-        if (selectedFilter === 'clear') {
-            setFilter('');
-        } else {
-            setFilter(selectedFilter);
-        }
-    }
-
-    const filteredLessons = filter ? lessons.filter(lesson => lesson.vform === filter) : lessons;
 
     return (
         <Row className='mx-5'>
             <Col>
-                <Form className="d-flex mb-2 col-3">
-                    <Form.Control
-                        type="search"
-                        placeholder="Search"
-                        className="me-2"
-                        aria-label="Search"
-                        onChange={searchHandle}
-                    />
-                    <Dropdown className="mb-2">
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Filter
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => handleFilterChange("clear")} style={{ color: '#6c757d' }}>Clear</Dropdown.Item>
-                            <Dropdown.Item onClick={() => handleFilterChange("NOUN")}>Noun</Dropdown.Item>
-                            <Dropdown.Item onClick={() => handleFilterChange("いーADJ")}>いーADJ</Dropdown.Item>
-                            <Dropdown.Item onClick={() => handleFilterChange("なーADJ")}>なーADJ</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Form>
+                <div className="d-flex align-items-center">
+                    <Form className="d-flex mb-2 col-3 me-2">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                            onChange={searchHandle}
+                        />
+                    </Form>
+                    <Button as={Link} to='/CreateNote' className='btn-secondary shadow-none'>
+                        Add New Note
+                    </Button>
+                </div>
                 <Table striped bordered hover size="sm" className="lesson-table">
                     <thead className="table-secondary">
                         <tr>
-                            <th>Level</th>
-                            <th>Form</th>
-                            <th>Phrase</th>
-                            <th>Meaning</th>
+                            <th>Note</th>
                             <th>Example</th>
                             <th>Translation</th>
+                            <th>Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            filteredLessons.map((item, index) =>
+                            notes.map((item, index) =>
                                 <tr key={index} >
-                                    <td>{item.level}</td>
-                                    <td>{item.vform}</td>
-                                    <td>{item.phrases}</td>
-                                    <td>{item.meaning}</td>
+                                    <td>{item.note}</td>
                                     <td>{item.example}</td>
                                     <td>{item.translation}</td>
+                                    <td>{item.remark}</td>
                                 </tr>
                             )
                         }
@@ -91,5 +73,4 @@ const LessonList = () => {
         </Row>
     );
 }
-
-export default LessonList;
+export default NoteList;

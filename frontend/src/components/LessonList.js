@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Table, Form } from 'react-bootstrap';
+import { Row, Col, Table, Form, Dropdown } from 'react-bootstrap';
 
 const LessonList = () => {
     const [lessons, setLessons] = useState([]);
+    const [filter, setFilter] = useState(null);
 
     useEffect(() => {
         getAllLessons();
@@ -13,9 +14,6 @@ const LessonList = () => {
         result = await result.json();
         setLessons(result);
     }
-
-    console.warn(lessons)
-
 
     const searchHandle = async (event) => {
         let key = event.target.value;
@@ -30,6 +28,16 @@ const LessonList = () => {
         }
     }
 
+    const handleFilterChange = (selectedFilter) => {
+        if (selectedFilter === 'clear') {
+            setFilter('');
+        } else {
+            setFilter(selectedFilter);
+        }
+    }
+
+    const filteredLessons = filter ? lessons.filter(lesson => lesson.vform === filter) : lessons;
+
     return (
         <Row className='mx-5'>
             <Col>
@@ -41,6 +49,17 @@ const LessonList = () => {
                         aria-label="Search"
                         onChange={searchHandle}
                     />
+                    <Dropdown className="mb-2">
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Filter
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={() => handleFilterChange("clear")} style={{ color: '#6c757d' }}>Clear</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("NOUN")}>Noun</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("いーADJ")}>いーADJ</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("なーADJ")}>なーADJ</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Form>
                 <Table striped bordered hover size="sm" className="lesson-table">
                     <thead className="table-secondary">
@@ -55,7 +74,7 @@ const LessonList = () => {
                     </thead>
                     <tbody>
                         {
-                            lessons.map((item, index) =>
+                            filteredLessons.map((item, index) =>
                                 <tr key={index} >
                                     <td>{item.level}</td>
                                     <td>{item.vform}</td>
@@ -72,4 +91,5 @@ const LessonList = () => {
         </Row>
     );
 }
+
 export default LessonList;
