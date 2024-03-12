@@ -3,12 +3,13 @@ const Lesson = require("../models/Lesson");
 // --- Retrieve all lessons  ---//
 module.exports.getAllLessons = (request, response) => {
     return Lesson.find({})
+        .sort({ level: 1 }) // Sort by the 'level' field in ascending order
         .then(result => {
             response.send(result);
         }).catch(err => {
             response.send(err);
         });
-}
+};
 
 // --- Search a lesson --- //
 module.exports.searchLessons = async (request, response) => {
