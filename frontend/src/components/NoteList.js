@@ -11,7 +11,7 @@ const NoteList = () => {
     }, []);
 
     const getAllNotes = async () => {
-        let result = await fetch('http://localhost:4000/notes/allNotes')
+        let result = await fetch('https://my-nihongo-app-server.vercel.app/notes/allNotes')
         result = await result.json();
         setNotes(result);
     }
@@ -21,7 +21,7 @@ const NoteList = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`http://localhost:4000/notes/search/${key}`);
+            let result = await fetch(`https://my-nihongo-app-client.vercel.app/notes/search/${key}`);
             result = await result.json()
             if (result) {
                 setNotes(result)
