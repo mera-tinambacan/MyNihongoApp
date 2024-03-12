@@ -11,7 +11,7 @@ const NoteList = () => {
     }, []);
 
     const getAllNotes = async () => {
-        let result = await fetch('https://my-nihongo-app-server.vercel.app/notes/allNotes')
+        let result = await fetch('http://localhost:4000/notes/allNotes')
         result = await result.json();
         setNotes(result);
     }
@@ -21,7 +21,7 @@ const NoteList = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`https://my-nihongo-app-server.vercel.app/notes/search/${key}`);
+            let result = await fetch(`http://localhost:4000/notes/search/${key}`);
             result = await result.json()
             if (result) {
                 setNotes(result)
@@ -35,35 +35,36 @@ const NoteList = () => {
         <Row className='mx-5'>
             <Col>
                 <div className="d-flex align-items-center">
-                    <Form className="d-flex mb-2 col-3 me-2">
+                    <Form className="d-flex col-3">
                         <Form.Control
                             type="search"
                             placeholder="Search"
                             aria-label="Search"
+                            className='me-2 mb-2'
                             onChange={searchHandle}
                         />
                     </Form>
-                    <Button as={Link} to='/CreateNote' className='btn-secondary shadow-none'>
+                    <Button as={Link} to='/CreateNote' className="custom-add-note-button mb-2 me-2">
                         Add New Note
                     </Button>
                 </div>
                 <Table striped bordered hover size="sm" className="lesson-table">
                     <thead className="table-secondary">
                         <tr>
-                            <th>Note</th>
-                            <th>Example</th>
-                            <th>Translation</th>
-                            <th>Remarks</th>
+                            <th  className="table-header">Note</th>
+                            <th  className="table-header">Example</th>
+                            <th  className="table-header">Translation</th>
+                            <th  className="table-header">Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             notes.map((item, index) =>
                                 <tr key={index} >
-                                    <td>{item.note}</td>
-                                    <td>{item.example}</td>
-                                    <td>{item.translation}</td>
-                                    <td>{item.remark}</td>
+                                    <td style={{ width: '30%' }}>{item.note}</td>
+                                    <td style={{ width: '30%' }}>{item.example}</td>
+                                    <td style={{ width: '30%' }}>{item.translation}</td>
+                                    <td style={{ width: '10%' }}>{item.remark}</td>
                                 </tr>
                             )
                         }

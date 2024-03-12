@@ -10,7 +10,7 @@ const LessonList = () => {
     }, []);
 
     const getAllLessons = async () => {
-        let result = await fetch('https://my-nihongo-app-server.vercel.app/lessons/allLessons')
+        let result = await fetch('http://localhost:4000/lessons/allLessons')
         result = await result.json();
         setLessons(result);
     }
@@ -18,7 +18,7 @@ const LessonList = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`https://my-nihongo-app-server.vercel.app/lessons/search/${key}`);
+            let result = await fetch(`http://localhost:4000/lessons/search/${key}`);
             result = await result.json()
             if (result) {
                 setLessons(result)
@@ -35,21 +35,22 @@ const LessonList = () => {
             setFilter(selectedFilter);
         }
     }
+
     const filteredLessons = filter ? lessons.filter(lesson => lesson.vform === filter) : lessons;
 
     return (
         <Row className='mx-5'>
             <Col>
-                <Form className="d-flex mb-2 col-3">
+                <Form className="d-flex col-4">
                     <Form.Control
                         type="search"
                         placeholder="Search"
-                        className="me-2"
                         aria-label="Search"
+                        className='me-2 mb-2'
                         onChange={searchHandle}
                     />
                     <Dropdown className="mb-2">
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <Dropdown.Toggle className="custom-filter-button" id="dropdown-basic">
                             Filter
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -72,24 +73,24 @@ const LessonList = () => {
                 <Table striped bordered hover size="sm" className="lesson-table">
                     <thead className="table-secondary">
                         <tr>
-                            <th>Level</th>
-                            <th>Form</th>
-                            <th>Phrase</th>
-                            <th>Meaning</th>
-                            <th>Example</th>
-                            <th>Translation</th>
+                            <th className="table-header">Level</th>
+                            <th className="table-header">Form</th>
+                            <th className="table-header">Phrase</th>
+                            <th className="table-header">Meaning</th>
+                            <th className="table-header">Example</th>
+                            <th className="table-header">Translation</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             filteredLessons.map((item, index) =>
                                 <tr key={index} >
-                                    <td>{item.level}</td>
-                                    <td>{item.vform}</td>
-                                    <td>{item.phrases}</td>
-                                    <td>{item.meaning}</td>
-                                    <td>{item.example}</td>
-                                    <td>{item.translation}</td>
+                                    <td style={{ width: '4%', textAlign: 'center' }}>{item.level}</td>
+                                    <td style={{ width: '6%' }}>{item.vform}</td>
+                                    <td style={{ width: '20%' }}>{item.phrases}</td>
+                                    <td style={{ width: '28%' }}>{item.meaning}</td>
+                                    <td style={{ width: '21%' }}>{item.example}</td>
+                                    <td style={{ width: '21%' }}>{item.translation}</td>
                                 </tr>
                             )
                         }

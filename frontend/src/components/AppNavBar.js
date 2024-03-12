@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const AppNavBar = () => {
   return (
-    <Navbar bg="warning" expand="lg" className="navbar mb-2">
+    <Navbar expand="lg" className="navbar mb-2">
       <Container className='mx-5'>
         <Navbar.Brand as={NavLink} to="/" className="navBrand">
           日本語 勉強
