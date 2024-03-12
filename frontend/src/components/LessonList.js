@@ -35,7 +35,6 @@ const LessonList = () => {
             setFilter(selectedFilter);
         }
     }
-
     const filteredLessons = filter ? lessons.filter(lesson => lesson.vform === filter) : lessons;
 
     return (
@@ -58,6 +57,15 @@ const LessonList = () => {
                             <Dropdown.Item onClick={() => handleFilterChange("NOUN")}>Noun</Dropdown.Item>
                             <Dropdown.Item onClick={() => handleFilterChange("いーADJ")}>いーADJ</Dropdown.Item>
                             <Dropdown.Item onClick={() => handleFilterChange("なーADJ")}>なーADJ</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[ます]")}>V[ます]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[て]")}>V [て]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[ない]")}>V [ない]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[Dict]")}>V [Dict]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[た]")}>V [た]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[Plain]")}>V [Plain]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[Potential]")}>V [Potential]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[Cond]")}>V [Cond]</Dropdown.Item>
+                            <Dropdown.Item onClick={() => handleFilterChange("V[Vol]")}>V [Vol]</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Form>
